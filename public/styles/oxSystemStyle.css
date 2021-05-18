@@ -1,0 +1,94 @@
+/* NAVIGATION */
+.ap-navigation{
+    width: 200px;
+    padding: 15px 0;
+    background-color: #303030;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.ap-nav-list{
+    height: 100%;
+    padding: 0;
+}
+
+.ap-nav-item{
+    list-style-type: none;
+    margin: 10px 0;
+    text-transform: uppercase;
+}
+.ap-nav-item:last-child{
+    /* display: block; */
+    position: absolute;
+    bottom: 0;
+}
+
+.ap-nav-item>.nav-link{
+    display: block;
+    width: 200px;
+    padding: 10px 20px;
+}
+
+.ap-nav-item>.nav-link.active{
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.ap-nav-item>.nav-link:hover, .ap-nav-item>.nav-link.active{
+    text-decoration: none;
+}
+
+.ap-nav-item>.nav-link::first-letter{
+    font-size: 32px;
+}
+
+/* ADMIN PAGE */
+
+.ap-main-content{
+    margin-left: 200px;   /* Push main content below navbar level */
+    padding: 20px 50px;
+    background-color: #888888;
+}
+
+.ap-container{
+    background-color: #303030;
+}
+.ap-container>.ox-title{
+    padding: 15px 20px;
+    margin-bottom: 0;
+}
+.ap-container>.ox-article{
+    margin-top: 0;
+}
+
+/* TABLE STYLE */
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd88;
+    text-align: left;
+    padding: 8px;
+}
+
+th:first-child, td:last-child{
+    width: 1%;
+    white-space: nowrap;
+    text-align: center;
+}
+.ap-pages-articles td:nth-child(2) {
+    width: 60%;
+}
+.app-no-data, .ap-pages-articles td:nth-child(4), .ap-pages-articles th:nth-child(4){
+    width: 1%;
+    white-space: nowrap;
+    text-align: center;
+}
+tr:nth-child(even) {
+    background-color: rgba(221, 221, 221, 0.2);
+}
