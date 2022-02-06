@@ -1,9 +1,11 @@
 <h1 class="ox-title">Media</h1>
 
 
-<section class="container">
+<section class="ap-container">
     <article class="ox-article">
-        <h3 class="ox-title">Oxygen CMS administration panel</h3>
-        <p>Here you can execute following actions  like add/edit/update/remove articles or pages on your website.</p>
+        <button class="btn btn-submit" onClick="displayModal()"><i class="fas fa-plus"></i> Upload Media</button>
+
+        <h3 class="ox-title">Media</h3>
+        <p>In this panel you find all uploaded by you images, audio, video.</p>
     </article>
 </section>

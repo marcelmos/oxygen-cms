@@ -1,12 +1,29 @@
-<main class="main-content">
-    <section class="hero">
-        <h1 class="page-header">Post title</h1>
-    </section>
+<?php
+$data = include(__DIR__ . './../src/config.php');
+// include_once dirname(__FILE__) . './../src/databaseActions.php';
+// $conn = new oxdb;
+$conn = new mysqli($data['host'], $data['username'], $data['password'], $data['database']);
 
-    <section class="container">
-        <article class="ox-article">
-            <h2 class="ox-title">Template of blog post.</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, cum a rerum repudiandae nobis sed fugit. Dolorum consequuntur fugiat deleniti obcaecati necessitatibus repellendus. Quis reprehenderit quasi atque et ab velit.</p>
-        </article>
-    </section>
-</main>
+$post_id = $_GET['id'];
+
+$result = $conn->query("SELECT * FROM ". $data['prefix'] ."articles WHERE id = $post_id");
+
+while($row = $result->fetch_assoc()){
+    echo (
+        '<main class="main-content">
+            <section class="hero">
+                <h1 class="page-header">'.$row["title"].'</h1>
+            </section>
+
+            <section class="container">
+                <article class="ox-article">
+                    <h2 class="ox-title">'.$row["title"].'</h2>
+                    <h4 class="article-date">'.$row["date"].'</h4>
+                    <p class="article-prev">'.$row["content"].'</p>
+                </article>
+            </section>
+        </main>');
+}
+
+
+$conn->close();

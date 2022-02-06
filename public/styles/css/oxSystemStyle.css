@@ -50,6 +50,7 @@
     margin-left: 200px;   /* Push main content below navbar level */
     padding: 20px 50px;
     background-color: #888888;
+    min-height: calc(100vh - 35px);
 }
 
 .ap-container{
@@ -68,6 +69,7 @@ table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    margin-top: 25px;
 }
 
 td, th {
@@ -91,4 +93,30 @@ th:first-child, td:last-child{
 }
 tr:nth-child(even) {
     background-color: rgba(221, 221, 221, 0.2);
+}
+
+/* Install Setup Style */
+.setup-content {
+    padding: 50px 20%;
+    margin: 0 auto;
+}
+.setup-content div {
+    background-color: #3f3f3f;
+    padding: 20px 40px;
+}
+.ap-setup-form{
+    margin-top: 30px;
+}
+.ap-setup-form hr{
+    margin: 30px 0;
+}
+.ap-setup-form label {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.ap-setup-form label>input {
+    width: 250px;
+    margin-top: 5px;
 }

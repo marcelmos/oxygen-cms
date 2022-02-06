@@ -1,19 +1,23 @@
+<?php
+    include_once dirname(__FILE__) . './../src/databaseActions.php';
+    $conn = new oxdb;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php if($this->action == 'index'){echo 'Home';} else{echo ucwords($this->action);} ?></title>
+    <title><?php if($this->action == 'index'){echo 'Dashboard';} else{echo ucwords(substr($this->action, 3));} ?></title>
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/cbb96ef56b.js" crossorigin="anonymous"></script>
 
     <?php
-    $stylesArr = scandir('./styles', 1);
+    $stylesArr = scandir('./styles/css', 1);
 
     foreach($stylesArr as $item => $value){
         if(strpos($value, '.css')){
-            echo "<link rel='stylesheet' href='/styles/$value'>";
+            echo "<link rel='stylesheet' href='/styles/css/$value'>";
         }
     }
     ?>
@@ -45,5 +49,18 @@
             Copyright © Oxygen 2021
         </section>
     </footer>
+
+<!-- SCRIPTS -->
+    <?php
+    $stylesArr = scandir('./js', 1);
+
+    foreach($stylesArr as $item => $value){
+        if(strpos($value, '.js')){
+            echo "<script type='text/javascript' src='/js/$value'></script>";
+        }
+    }
+    ?>
 </body>
 </html>
+
+

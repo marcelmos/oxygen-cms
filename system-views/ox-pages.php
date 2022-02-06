@@ -1,8 +1,9 @@
 <h1 class="ox-title">Pages</h1>
 
-
 <section class="ap-container">
     <article class="ox-article">
+        <button class="btn btn-submit" onClick="displayModal()"><i class="fas fa-plus"></i> New Page</button>
+
         <table class="ap-pages-articles">
             <tr>
                 <th><input type="checkbox"></th>
@@ -12,41 +13,31 @@
                 <th>Date</th>
             </tr>
             <!-- AUTO CONTENT INPUT -->
-            <tr>
-                <td><input type="checkbox"></td>
-                <td>Home</td>
-                <td>Admin</td>
-                <td>-</td>
-                <td>18-05-2021</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td>Blog</td>
-                <td>Admin</td>
-                <td>489</td>
-                <td>18-05-2021</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td>About</td>
-                <td>Admin</td>
-                <td>-</td>
-                <td>18-05-2021</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td>Contact</td>
-                <td>Admin</td>
-                <td>-</td>
-                <td>18-05-2021</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td>FAQ</td>
-                <td>Admin</td>
-                <td>-</td>
-                <td>18-05-2021</td>
-            </tr>
+            <?php
+            $sql = "SELECT * FROM ox_users";
+            $result = $conn->query($sql);
+
+            if($result != null && $result->num_rows > 0){
+                while($row = $result->fetch_assoc()){
+                    echo (
+                        '<tr>
+                            <td><input type="checkbox"></td>
+                            <td>'.$row["username"].'</td>
+                            <td>'.$row["name"].'</td>
+                            <td>'.$row["mail"].'</td>
+                            <td>'.$row["role"].'</td>
+                        </tr>');
+                }
+            }else{
+                echo (
+                    '<tr>
+                        <td class="app-no-data" colspan="5">No pages</td>
+                    </tr>');
+            }
+
+
+
+            ?>
             <!-- AUTO CONTENT INPUT END -->
             <tr>
                 <th><input type="checkbox"></th>
@@ -58,3 +49,6 @@
         </table>
     </article>
 </section>
+<?php
+$conn->close();
+?>

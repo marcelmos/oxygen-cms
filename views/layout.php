@@ -1,3 +1,9 @@
+<?php
+    include_once dirname(__FILE__) . './../src/databaseActions.php';
+    // $conn = new oxdb;
+    // $conn = new mysqli($data['host'], $data['username'], $data['password'], $data['database']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php if($this->action == 'index'){echo 'Home';} else{echo ucwords($this->action);} ?></title>
     <?php
-    $stylesArr = scandir('./styles', 1);
+    $stylesArr = scandir('./styles/css', 1);
 
     foreach($stylesArr as $item => $value){
         if(strpos($value, '.css')){
-            echo "<link rel='stylesheet' href='./styles/$value'>";
+            echo "<link rel='stylesheet' href='./styles/css/$value'>";
         }
     }
     ?>
@@ -69,5 +75,21 @@
             Copyright © Oxygen 2021
         </section>
     </footer>
+
+    <!-- SCRIPTS -->
+    <?php
+    $stylesArr = scandir('./js', 1);
+
+    foreach($stylesArr as $item => $value){
+        if(strpos($value, '.js')){
+            echo "<script src='/styles/$value'></script>";
+        }
+    }
+    ?>
 </body>
 </html>
+
+
+<?php
+$conn->close();
+?>

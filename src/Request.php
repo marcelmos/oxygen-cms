@@ -10,7 +10,9 @@ class Request {
         private array $get,
         private array $post,
         private array $server
-    ) {}
+    ) {
+        echo "Request, ";
+    }
 
     public function action(): string{
         return $this->get['action'] ?? 'index';

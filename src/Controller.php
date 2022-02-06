@@ -2,6 +2,7 @@
 
 // declare(strict_type=1);
 
+
 namespace App;
 
 class Controller {
@@ -10,6 +11,8 @@ class Controller {
     public function __construct(
         private Request $request
     ) {
+        echo "Controller, ";
+
         $this->view = new View(
             $this->request->action()
         );

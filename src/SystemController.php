@@ -10,6 +10,10 @@ class SystemController {
     public function __construct(
         private Request $request
     ) {
+        echo "System Controller, ";
+
+
+
         $this->view = new View(
             $this->request->action()
         );
@@ -47,6 +51,10 @@ class SystemController {
 
     private function ox_settings(): void{
         $this->view->renderSys('ox-settings');
+    }
+
+    private function ox_setup(): void{
+        $this->view->renderSys('ox-setup');
     }
 
     private function error404(): void{

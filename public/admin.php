@@ -4,6 +4,7 @@ use App\SystemController;
 use App\Request;
 
 include_once "../vendor/autoload.php";
+include_once "../src/databaseActions.php";
 
 const APP_DIR = __DIR__;
 

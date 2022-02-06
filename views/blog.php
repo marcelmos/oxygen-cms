@@ -1,3 +1,10 @@
+<?php
+$data = include(__DIR__ . './../src/config.php');
+// include_once dirname(__FILE__) . './../src/databaseActions.php';
+// $conn = new oxdb;
+$conn = new mysqli($data['host'], $data['username'], $data['password'], $data['database']);
+?>
+
 <main class="main-content">
     <section class="hero">
         <h1 class="page-header">BLOG</h1>
@@ -6,47 +13,32 @@
     <section class="container blog">
         <!-- ARTICLE POST SECTION -->
         <section class="blog-articles">
-            <article class="ox-article">
-                <h2 class="ox-title">Welcome in Oxygen CMS</h2>
-                <h4 class="article-date">12-04-2021</h4>
-                <p class="article-prev">Welcome to Oxygen CMS webpage, you can check a potential of the new Content Menagment System. Easy, fast and nice looking Tool for everyone and for any task.</p>
-                <a href="/?action=post"><button class="article-read">Read more...</button></a>
-            </article>
 
-            <article class="ox-article">
-                <h2 class="ox-title">Welcome in Oxygen CMS</h2>
-                <h4 class="article-date">12-04-2021</h4>
-                <p class="article-prev">Welcome to Oxygen CMS webpage, you can check a potential of the new Content Menagment System. Easy, fast and nice looking Tool for everyone and for any task.</p>
-                <a href="/?action=post"><button class="article-read">Read more...</button></a>
-            </article>
+            <?php
 
-            <article class="ox-article">
-                <h2 class="ox-title">Welcome in Oxygen CMS</h2>
-                <h4 class="article-date">12-04-2021</h4>
-                <p class="article-prev">Welcome to Oxygen CMS webpage, you can check a potential of the new Content Menagment System. Easy, fast and nice looking Tool for everyone and for any task.</p>
-                <a href="/?action=post"><button class="article-read">Read more...</button></a>
-            </article>
+            $sql = "SELECT * FROM ox_articles";
+            $result = $conn->query($sql);
 
-            <article class="ox-article">
-                <h2 class="ox-title">Welcome in Oxygen CMS</h2>
-                <h4 class="article-date">12-04-2021</h4>
-                <p class="article-prev">Welcome to Oxygen CMS webpage, you can check a potential of the new Content Menagment System. Easy, fast and nice looking Tool for everyone and for any task.</p>
-                <a href="/?action=post"><button class="article-read">Read more...</button></a>
-            </article>
+            if($result != null && $result->num_rows > 0){
+                while($row = $result->fetch_assoc()){
+                    if($row["status"]){
+                        echo (
+                            '<article class="ox-article">
+                                <h2 class="ox-title">'.$row["title"].'</h2>
+                                <h4 class="article-date">'.$row["date"].'</h4>
+                                <p class="article-prev">'.$row["content"].'</p>
+                                <a href="/?action=post&id='.$row["id"].'"><button class="btn btn-submit">Read more...</button></a>
+                            </article>');
+                    }
+                }
+            }else{
+                echo (
+                    '<article class="ox-article">
+                        <h2 class="ox-title">Oops... Looks like there is no article yet... :/</h2>
+                    </article>');
+            }
+            ?>
 
-            <article class="ox-article">
-                <h2 class="ox-title">Welcome in Oxygen CMS</h2>
-                <h4 class="article-date">12-04-2021</h4>
-                <p class="article-prev">Welcome to Oxygen CMS webpage, you can check a potential of the new Content Menagment System. Easy, fast and nice looking Tool for everyone and for any task.</p>
-                <a href="/?action=post"><button class="article-read">Read more...</button></a>
-            </article>
-
-            <article class="ox-article">
-                <h2 class="ox-title">Welcome in Oxygen CMS</h2>
-                <h4 class="article-date">12-04-2021</h4>
-                <p class="article-prev">Welcome to Oxygen CMS webpage, you can check a potential of the new Content Menagment System. Easy, fast and nice looking Tool for everyone and for any task.</p>
-                <a href="/?action=post"><button class="article-read">Read more...</button></a>
-            </article>
         </section>
         <!-- ARTICLE POST SECTION END -->
 
@@ -57,11 +49,17 @@
                 <article class="ox-article">
                     <h2 class="ox-title">Last posts</h2>
                     <ul>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
+                        <?php
+                        if($result->num_rows > 0){
+                            while($row = $result->fetch_assoc()){
+                                if($row["status"]){
+                                    echo '<li>'.$row["title"].'</li>';
+                                }
+                            }
+                        }else{
+                            echo '<li>No articles found... :/</li>';
+                        }
+                        ?>
                     </ul>
                 </article>
             </div>
@@ -70,3 +68,6 @@
         <!-- SIDE BAR END -->
     </section>
 </main>
+<?php
+$conn->close();
+?>
